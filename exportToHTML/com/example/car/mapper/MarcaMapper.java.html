@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>MarcaMapper.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MarcaMapper.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">car</span><span class="s2">.</span><span class="s1">mapper</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">car</span><span class="s2">.</span><span class="s1">dto</span><span class="s2">.</span><span class="s1">CreateMarcaDto</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">car</span><span class="s2">.</span><span class="s1">dto</span><span class="s2">.</span><span class="s1">RecoveryMarcaDto</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">car</span><span class="s2">.</span><span class="s1">dto</span><span class="s2">.</span><span class="s1">UpdateMarcaDto</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">car</span><span class="s2">.</span><span class="s1">entities</span><span class="s2">.</span><span class="s1">Marca</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">mapstruct</span><span class="s2">.</span><span class="s1">Mapper</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">mapstruct</span><span class="s2">.</span><span class="s1">MappingTarget</span><span class="s2">;</span>
+
+<span class="s1">@Mapper</span><span class="s2">(</span><span class="s1">componentModel </span><span class="s2">= </span><span class="s3">&quot;spring&quot;</span><span class="s2">, </span><span class="s1">uses </span><span class="s2">= </span><span class="s1">CarroMapper</span><span class="s2">.</span><span class="s0">class</span><span class="s2">)</span>
+<span class="s0">public interface </span><span class="s1">MarcaMapper </span><span class="s2">{</span>
+    <span class="s1">Marca toMarca</span><span class="s2">(</span><span class="s1">CreateMarcaDto createMarcaDto</span><span class="s2">);</span>
+    <span class="s1">RecoveryMarcaDto toRecoveryMarcaDto</span><span class="s2">(</span><span class="s1">Marca marca</span><span class="s2">);</span>
+    <span class="s0">void </span><span class="s1">updateMarcaFromDto</span><span class="s2">(</span><span class="s1">UpdateMarcaDto updateMarcaDto</span><span class="s2">, </span><span class="s1">@MappingTarget Marca marca</span><span class="s2">);</span>
+<span class="s2">}</span>
+
+
+</pre>
+</body>
+</html>
