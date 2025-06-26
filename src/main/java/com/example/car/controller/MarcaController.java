@@ -22,7 +22,7 @@ public class MarcaController {
     @Autowired
     private MarcaService marcaService;
 
-    @PostMapping
+
     @Operation(
             summary = "Cadastrar uma nova marca",
             description = "Cria um novo registro de marca no sistema. A marca será identificada automaticamente por um ID gerado pelo banco de dados."
@@ -31,11 +31,12 @@ public class MarcaController {
             @ApiResponse(responseCode = "200", description = "Marca criada com sucesso"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos")
     })
+    @PostMapping
     public RecoveryMarcaDto createMarca(@RequestBody CreateMarcaDto createMarcaDto) {
         return marcaService.createMarca(createMarcaDto);
     }
 
-    @GetMapping
+
     @Operation(
             summary = "Listar todas as marcas",
             description = "Retorna uma lista de todas as marcas de veículos cadastradas no sistema, incluindo os carros associados a cada uma delas."
@@ -44,11 +45,12 @@ public class MarcaController {
             @ApiResponse(responseCode = "200", description = "Marcas retornadas com sucesso"),
             @ApiResponse(responseCode = "500", description = "Erro interno ao buscar marcas")
     })
+    @GetMapping
     public List<RecoveryMarcaDto> getAllMarcas() {
         return marcaService.getAllMarcas();
     }
 
-    @GetMapping("/{id}")
+
     @Operation(
             summary = "Buscar uma marca pelo ID",
             description = "Busca e retorna uma marca específica com base no seu ID. Também retorna os carros associados à marca, se houver."
@@ -57,13 +59,14 @@ public class MarcaController {
             @ApiResponse(responseCode = "200", description = "Marca encontrada"),
             @ApiResponse(responseCode = "404", description = "Marca não encontrada")
     })
+    @GetMapping("/{id}")
     public ResponseEntity<RecoveryMarcaDto> getMarcaById(@PathVariable Long id) {
         return marcaService.getMarcaById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
+
     @Operation(
             summary = "Atualizar dados de uma marca existente",
             description = "Atualiza o nome de uma marca já cadastrada com base no ID informado. Retorna erro 404 se a marca não existir."
@@ -73,13 +76,14 @@ public class MarcaController {
             @ApiResponse(responseCode = "404", description = "Marca não encontrada"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos")
     })
+    @PutMapping("/{id}")
     public ResponseEntity<RecoveryMarcaDto> updateMarca(@PathVariable Long id, @RequestBody UpdateMarcaDto updateMarcaDto) {
         return marcaService.updateMarca(id, updateMarcaDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+
     @Operation(
             summary = "Excluir uma marca pelo ID",
             description = "Remove permanentemente uma marca com base no seu ID. Caso a marca esteja associada a algum carro, é necessário garantir a integridade referencial."
@@ -88,6 +92,7 @@ public class MarcaController {
             @ApiResponse(responseCode = "200", description = "Marca excluída com sucesso"),
             @ApiResponse(responseCode = "404", description = "Marca não encontrada")
     })
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMarca(@PathVariable Long id) {
         if (marcaService.deleteMarca(id)) {
             return ResponseEntity.ok().build();
